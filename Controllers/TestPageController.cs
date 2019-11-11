@@ -28,7 +28,7 @@ namespace C2EpiserverBlog.Controllers
                     var cleanedJson = JObject.Parse(json);
 
                     var something = new TestPage {  };
-
+                    // In the real world the json.deserialzer should work, but it doesn't here. No idea why.
                     foreach (JProperty property in cleanedJson.Properties())
                     {
                         if(property.Name == "name")
