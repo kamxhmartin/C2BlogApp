@@ -1,11 +1,9 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System;
+using System.Net;
 using System.Web.Mvc;
 using C2EpiserverBlog.Models.Pages;
-using EPiServer;
-using EPiServer.Core;
-using EPiServer.Framework.DataAnnotations;
 using EPiServer.Web.Mvc;
+using Newtonsoft.Json.Linq;
 
 namespace C2EpiserverBlog.Controllers
 {
@@ -13,10 +11,43 @@ namespace C2EpiserverBlog.Controllers
     {
         public ActionResult Index(TestPage currentPage)
         {
-            /* Implementation of action. You can create your own view model class that you pass to the view or
-             * you can pass the page type for simpler templates */
-
             return View(currentPage);
+        }
+
+        [HttpPost]
+        public ActionResult Index(TestPage random, string submit)
+        {
+            Random rnd = new Random();
+            int spellNum = rnd.Next(1, 320);
+            var url = $"http://dnd5eapi.co/api/spells/{spellNum}";
+            try
+            {
+                using (WebClient wc = new System.Net.WebClient())
+                {
+                    var json = wc.DownloadString(url);
+                    var cleanedJson = JObject.Parse(json);
+
+                    var something = new TestPage {  };
+
+                    foreach (JProperty property in cleanedJson.Properties())
+                    {
+                        if(property.Name == "name")
+                        {
+                            something.SpellName = property.Value.ToString();
+                        }
+                        if(property.Name == "desc")
+                        {
+                            something.SpellDescription = property.Value.ToString();
+                        }
+                    }
+
+                    return View(something);
+                }
+            }
+            catch
+            {
+                throw;
+            }
         }
     }
 }

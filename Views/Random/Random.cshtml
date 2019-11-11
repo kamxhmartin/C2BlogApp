@@ -1,0 +1,21 @@
+﻿@model C2EpiserverBlog.Models.Random.Random
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Random</title>
+</head>
+<body>
+    <div> 
+        @Html.LabelFor(Model => Model.ID)
+        @Html.LabelFor(Model => Model.Index)
+        @Html.LabelFor(Model => Model.Name)
+        @Html.LabelFor(Model => Model.Description)
+    </div>
+</body>
+</html>

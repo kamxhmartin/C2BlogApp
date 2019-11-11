@@ -1,9 +1,24 @@
 ﻿@using EPiServer.Core
 @using EPiServer.Web.Mvc.Html
-
 @model C2EpiserverBlog.Models.Pages.TestPage
-
 <div>
-  @Html.PropertyFor(m => m.Heading)
-  @Html.PropertyFor(m => m.MainBody)
+    @Html.PropertyFor(m => m.Heading)
+    @Html.PropertyFor(m => m.MainBody)
+    @using (Html.BeginForm("Index", "TestPage", FormMethod.Post))
+    {
+        <input type="submit" class="" value="Random" />
+
+        <input type="submit" class="" value="Register" />
+
+    }
+    @if (!string.IsNullOrEmpty(Model.SpellName))
+    {
+        <div>
+            @Html.PropertyFor(m => m.SpellName)
+        </div>
+        <div>
+            @Html.PropertyFor(m => m.SpellDescription)
+        </div>
+
+    }
 </div>

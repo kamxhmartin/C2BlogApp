@@ -1,0 +1,9 @@
+﻿@using EPiServer.Core
+@using EPiServer.Web.Mvc.Html
+@model C2EpiserverBlog.Models.Pages.ContactPage
+<div>
+    @Html.PropertyFor(m => m.Name)
+    @Html.PropertyFor(m => m.Email)
+    @Html.PropertyFor(m => m.Phone)
+    @Html.AcceptButton()
+</div>

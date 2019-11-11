@@ -1,9 +1,8 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
+using C2EpiserverBlog.Models.Random;
 using EPiServer.Core;
 using EPiServer.DataAbstraction;
 using EPiServer.DataAnnotations;
-using EPiServer.SpecializedProperties;
 
 namespace C2EpiserverBlog.Models.Pages
 {
@@ -26,5 +25,20 @@ namespace C2EpiserverBlog.Models.Pages
             Order = 1)]
         public virtual XhtmlString MainBody { get; set; }
 
+        [CultureSpecific]
+        [Display(
+            Name = "Spell Name",
+            Description = "Name of the spell found",
+            GroupName = SystemTabNames.Content,
+            Order = 1)]
+        public virtual string SpellName { get; set; }
+
+        [CultureSpecific]
+        [Display(
+            Name = "Spell description",
+            Description = "Description of the spell found",
+            GroupName = SystemTabNames.Content,
+            Order = 1)]
+        public virtual string SpellDescription { get; set; }
     }
 }
